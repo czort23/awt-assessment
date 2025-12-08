@@ -1,12 +1,33 @@
 from flask import Flask
-
-app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 
-if __name__ == '__main__':
-    app.run()
+db = SQLAlchemy()
+login_manager = LoginManager()
+
+
+def create_app():
+    app = Flask(__name__)
+
+    app.config["SECRET_KEY"] = "devkey"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mood_app.db"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+    db.init_app(app)
+
+    # Register blueprints
+    from routes.main import main_bp
+
+    app.register_blueprint(main_bp)
+
+    # Create database tables
+    with app.app_context():
+        db.create_all()
+
+    return app
+
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True)

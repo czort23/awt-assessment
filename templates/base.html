@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Playlist App</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="{{ url_for('main.home') }}" class="logo">
+                <i class="bi bi-music-note-beamed" aria-label="Logo"></i>
+            </a>
+        </div>
+
+        <div class="navbar-center">
+            <span class="brand-name">Moodify</span>
+        </div>
+
+        <div class="navbar-right">
+            <a href="{{ url_for('main.home') }}">Home</a>
+            <a href="{{ url_for('main.about') }}">About Us</a>
+
+            {% if current_user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="dropdown-btn">{{ current_user.username }} <i class="bi bi-chevron-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('auth.manage_account') }}">Manage Account</a>
+                        <a href="{{ url_for('playlist.my_playlists') }}">My Playlists</a>
+                        <a href="{{ url_for('mood.mood_stats') }}">Mood Stats</a>
+                        <hr>
+                        <a href="{{ url_for('auth.logout') }}" class="logout">Log Out</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}" class="auth-btn">Sign In</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- MAIN PAGE CONTENT -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© {{ current_year if current_year else "2025" }} Mood Playlist Generator. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

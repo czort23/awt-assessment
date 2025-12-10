@@ -21,9 +21,11 @@ def create_app():
     # Register blueprints
     from routes.auth import auth_bp
     from routes.main import main_bp
+    from routes.playlist import playlist_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
+    app.register_blueprint(playlist_bp)
 
     # Create database tables
     with app.app_context():

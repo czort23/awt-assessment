@@ -15,10 +15,14 @@ def create_app():
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)
+    login_manager.init_app(app)
+    login_manager.login_view = "auth.login"  # redirects if user not logged in
 
     # Register blueprints
+    from routes.auth import auth_bp
     from routes.main import main_bp
 
+    app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
 
     # Create database tables

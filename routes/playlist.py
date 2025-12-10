@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, jsonify
-from flask_login import login_required, current_user
+from flask_login import login_required, current_user, AnonymousUserMixin
 
 from app import db
 from models.mood_log import MoodLog
@@ -18,7 +18,7 @@ def generate(mood: str):
     :param mood: Mood chosen be the user.
     :return: Rendered results.html page.
     """
-    if mood:
+    if mood and not isinstance(current_user, AnonymousUserMixin):
         log = MoodLog(user_id=current_user.id, mood=mood)
         db.session.add(log)
         db.session.commit()

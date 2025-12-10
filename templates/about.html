@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>About Moodify</h1>
+        <p>Discover playlists that match your mood. Music that moves with you.</p>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="about-features">
+    <h2>Why Choose Moodify?</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <i class="bi bi-emoji-smile-fill"></i>
+            <h3>Playlists That Fit Your Mood</h3>
+            <p>Discover Spotify playlists that match how you're feeling - music that fits the vibe.</p>
+        </div>
+        <div class="feature-card">
+            <i class="bi bi-bar-chart-fill"></i>
+            <h3>Track Your Mood Journey</h3>
+            <p>Follow your mood history over time through a simple, clean visual chart.</p>
+        </div>
+        <div class="feature-card">
+            <i class="bi bi-heart-fill"></i>
+            <h3>Save Playlists You Love</h3>
+            <p>Bookmark your favorites and return to the perfect playlists anytime.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="about-team">
+    <h2>Meet The Team</h2>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="../static/images/mr-pigeon.jpg" alt="Team Member">
+            <h4>Mr. Pigeon</h4>
+            <p>Frontend Developer</p>
+        </div>
+        <div class="team-member">
+            <img src="../static/images/miss-goose.jpg" alt="Team Member">
+            <h4>Miss Goose</h4>
+            <p>Backend Developer</p>
+        </div>
+        <div class="team-member">
+            <img src="../static/images/mrs-flamingo.jpg" alt="Team Member">
+            <h4>Mrs. Flamingo</h4>
+            <p>UX/UI Designer</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
